@@ -1,0 +1,44 @@
+﻿@model SaleOff
+
+<div class="row">
+    <div class="container">
+        <div class="title"
+             style="text-align: center;font-weight: bold;letter-spacing:2px;font-size:20px;color: rgba(0,0,0,0.2);">
+            View
+        </div>
+        <div class="tb">
+            <div class="container mt-2">
+                <div class="table-responsive pt-3">
+                    <div class="nm">
+                        <label asp-for="Name" style="padding-left:70px;">Name <sup>*</sup></label><br>
+                        <div class="name">@Model.Name</div>
+
+                        <div class="pr">
+                            <label asp-for="OldPrice" style="padding-left:70px;">OldPrice <sup>*</sup></label><br>
+                            <div class="price">@Model.OldPrice</div>
+                        </div>
+
+                        <div class="cnt">
+                            <label asp-for="NewPrice" style="padding-left:70px;">NewPrice <sup>*</sup></label><br>
+                            <div class="price">@Model.NewPrice</div>
+                        </div>
+
+                        <div class="image">
+                            <label asp-for="Image" style="padding-left:70px;">Image <sup>*</sup></label><br>
+                            <div class="img" style="width:50px;height:50px;border-radius:50px;">
+                                <img src="~/AdminPanel/img/saleoff/@Model.Image" style="width:100%;height:100%;border-radius: 100%;" alt="">
+                            </div>
+                        </div>
+
+
+                        <div style="display: flex; justify-content: flex-end; padding-right: 40px">
+                            <a asp-action="SaleOffList" asp-controller="SaleOff" asp-area="AdminPanel" class="btn btn-light">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

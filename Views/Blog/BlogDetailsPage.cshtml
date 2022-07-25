@@ -1,0 +1,92 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "BlogDetails Page";
+}
+
+@section style{
+
+    <link rel="stylesheet" href="~/MemberPanel/assets/sass/blogdetail.css">
+    <link rel="stylesheet" href="~/MemberPanel/assets/css/blogdetail.css">
+}
+
+<main>
+    <section id="background-potatoes">
+        <div class="background-potatoes">
+            <div class="img">
+                <img src="~/MemberPanel/assets/img/potatoes-background.jpeg" style="width: 100%;height: 100%;" alt="">
+
+            </div>
+            <div class="name">
+                <p>BlogDetail </p>
+                <span> <a href="~/MemberPanel/home.html"> <strong>Home</strong> </a> -->BlogDetail </span>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section id="blogdetail">
+        <div class="blogdetail">
+            <div class="container">
+                <div class="row">
+
+                    @await Component.InvokeAsync("BlogSideBar")
+
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="img-st">
+                            <img src="~/AdminPanel/img/blog/@Model.Image" style="width: 100%;height: 100%;" alt="">
+                        </div>
+
+                        <div class="content">
+                            @Model.BlogDetails.Description
+                        </div>
+
+                        <div class="basic-content">
+                            <p>@Model.Title</p>
+                        </div>
+
+                        <div class="next-content">
+                            The study area is located at the back with a view of the vast nature. Together with the other buildings, a congruent story has been managed in which the whole has a reinforcing effect on the components. The use of materials seeks connection to the main house, the adjacent stables
+                        </div>
+
+                        <div class="product-user">
+                            <div class="name-image">
+                                <div class="image">
+                                    <img src="~/AdminPanel/img/owner/@Model.Owner.Image" style="width: 100%;height: 100%;" alt="">
+                                </div>
+                                <div class="name">
+                                    <span>@Model.Owner.Fullname</span>
+                                    <div>@Model.Owner.Profession</div>
+                                </div>
+                            </div>
+
+                            <div class="user-connect">
+                                <div class="cat">
+                                    <strong>Categories:</strong> <span>@Model.BlogDetails.CategoryName</span>
+                                </div>
+                                <div class="tags">
+                                    <strong>Tags:</strong> <span>@Model.BlogDetails.Tags</span>
+                                </div>
+                                <div class="social-icon">
+                                    <span><i class="fab fa-facebook-f"></i></span>
+                                    <span><i class="fab fa-twitter"></i></span>
+                                    <span><i class="fab fa-google-plus-g"></i></span>
+                                    <span><i class="fab fa-linkedin-in"></i></span>
+                                    <span><i class="fas fa-envelope"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+@section Scripts {
+    <script asp-append-version="true" src="~/MemberPanel/assets/js/blogdetail.js"></script>
+
+}

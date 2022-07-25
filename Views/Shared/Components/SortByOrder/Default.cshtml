@@ -1,0 +1,11 @@
+﻿
+
+<div class="sortby">
+    <span>Sort By</span>
+    <button id="default">Default <i class="fas fa-angle-down" id="icon"></i></button>
+    <div class="sort-content">
+        <a href="#">Default</a>
+        <a asp-action="@ViewBag.Action" asp-route-sortOrder="@ViewBag.Name" asp-route-page="@Model.CurrentPage">Name</a>
+        <a asp-action="@ViewBag.Action" asp-route-sortOrder="@ViewBag.Price" asp-route-page="@Model.CurrentPage">Price</a>
+    </div>
+</div>

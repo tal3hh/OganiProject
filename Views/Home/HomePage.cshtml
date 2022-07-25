@@ -1,0 +1,407 @@
+﻿@model (List<Category> categories, List<Product> products, List<Blog> blogs, List<Advert> adverts)
+@{ 
+    ViewData["Title"] = "Home Page";
+}
+<!-- Start-Body -->
+
+@section style{
+
+    <link rel="stylesheet" href="~/MemberPanel/assets/sass/home.css">
+    <link rel="stylesheet" href="~/MemberPanel/assets/css/home.css">
+}
+
+
+<main>
+    <section id="first-part-body">
+        <div class="first-part-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-12">
+
+                    </div>
+                    <div class="col-lg-9 col-sm-12 a">
+                        <div class="page">
+                            <div class="content-btn">
+                                <span class="fruit">FRUIT FRESH</span>
+                                <div class="vegetable-cnt">
+                                    Vegetable 100% Organic
+                                </div>
+                                <div class="free">Free Pickup and Delivery Available</div>
+                                <button class="shopnow">
+                                    <a asp-controller="shop" asp-action="ShopPage">SHOP NOW</a>
+                                </button>
+                            </div>
+                            <div class="image">
+                                <img src="~/MemberPanel/assets/img/banner.jpeg" style="width: 100%;height: 100%;" alt="banner">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <section id="owl-carousel-slider">
+        <div class="owl-carousel-slider mt-5">
+            <div class="container">
+                <div class="owl-carousel owl-theme">
+                    @foreach (var category2 in Model.categories)
+                    {
+                        <div class="item">
+                            <div class="img">
+                                <img src="~/AdminPanel/img/category/@category2.Image" style="width: 100%;height: 100%;" alt="category">
+                            </div>
+                            <div class="cate-name">
+                                <a asp-action="ProductCategoryPage" asp-controller="Product" asp-route-id="@category2.Id">@category2.Name</a>
+                            </div>
+                        </div>}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="tab-menu">
+        <div class="tab-menu">
+            <div class="container">
+                <div class="title">
+                    <p>Latest Products</p>
+                </div>
+
+                <div class="category-name">
+                    <div class="all active" data-id="all">All</div>
+                    @foreach (var category in Model.categories)
+                    {
+                        <div class="fruit" data-id="@category.Name.ToLower()">@category.Name </div>}
+                </div>
+
+                <div class="product-image">
+                    <div class="row" data-id="all">
+                        @foreach (var product1 in Model.products.Take(8))
+                        {
+                            <div class="col-lg-3 col-sm-12" data-id="@product1.Id">
+                                <div class="picture">
+                                    <img src="~/AdminPanel/img/product/@product1.Image" style="width:100%;height:100%;"  alt="product">
+                                    <div class="icons">
+                                        <div class="heart-icon">
+                                            <a href="#" id="addheart"><i class="fas fa-heart"></i></a>
+                                        </div>
+                                        <div class="basket-icon">
+                                            <a href="#" id="addproduct"> <i class="fas fa-shopping-cart"></i></a>
+
+                                        </div>
+                                        <div class="detail-icon">
+                                            <a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@product1.Id"> <i class="fas fa-info"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="name">
+                                        <a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@product1.Id">@product1.Name</a>
+                                    </div>
+                                    <div class="price">
+                                        $@product1.Price
+                                    </div>
+
+                                </div>
+
+                            </div>}
+
+                    </div>
+
+                    @foreach (var category1 in Model.categories)
+                    {
+                        <div class="row d-none" data-id="@category1.Name.ToLower()">
+
+                            @foreach (var product in Model.products)
+                            {
+                                if (product.Category.Name.ToLower() == category1.Name.ToLower())
+                                {
+                                    <div class="col-lg-3 col-sm-12" data-id="@product.Id">
+                                        <div class="picture">
+                                            <img src="~/AdminPanel/img/product/@product.Image" style="width:100%;height:100%;"  alt="product">
+                                            <div class="icons">
+                                                <div class="heart-icon">
+                                                    <a href="" id="addheart"><i class="fas fa-heart"></i></a>
+                                                </div>
+                                                <div class="basket-icon">
+                                                    <a href="" id="addproduct"> <i class="fas fa-shopping-cart"></i></a>
+                                                </div>
+                                                <div class="detail-icon">
+                                                    <a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@product.Id"> <i class="fas fa-info"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="name">
+                                                <a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@product.Id">@product.Name</a>
+                                            </div>
+                                            <div class="price">
+                                                $@product.Price
+                                            </div>
+                                        </div>
+                                    </div>}
+                            }
+                        </div>}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="advert">
+        <div class="advert">
+            <div class="container">
+                <div class="row">
+                    @foreach (var advert in Model.adverts.Take(2))
+                    {
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="advert-img">
+                                <img src="~/AdminPanel/img/advert/@advert.Image" style="width: 100%;height: 100%;"
+                                     alt="drink&fruits">
+                            </div>
+                        </div>}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="slider-recently">
+        <div class="slider-recently">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="latest-products">
+                            <div class="title">
+                                Latest Products
+                            </div>
+                            <div class="slider">
+                                <div class="owl-carousel owl-theme">
+
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+
+                                        <div>
+                                            @{ var drink = 0;
+                                                foreach (var item in Model.products)
+                                                {
+                                                    if (item.Category.Name.ToLower() == "drinks")
+                                                    {
+                                                        drink++;
+                                                        <div>
+                                                            <img src="~/AdminPanel/img/product/@item.Image" style="width:100%;height:100%;"  alt="">
+                                                            <p style="text-align: center"><a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@item.Id">@item.Name: <strong>$@item.Price</strong> </a> </p>
+                                                        </div> }
+                                                    if (drink == 3) break;
+                                                } }
+                                        </div>
+
+
+                                    </div>
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+
+                                        <div>
+                                            @{ var eggs = 0;
+                                                foreach (var item in Model.products)
+                                                {
+                                                    if (item.Category.Name.ToLower() == "egg & butters")
+                                                    {
+                                                        eggs++;
+                                                        <div>
+                                                            <img src="~/AdminPanel/img/product/@item.Image" style="width:100%;height:100%;"  alt="">
+                                                            <p style="text-align: center"><a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@item.Id">@item.Name: <strong>$@item.Price</strong> </a> </p>
+                                                        </div> }
+                                                    if (eggs == 3) break;
+                                                } }
+                                        </div>
+
+
+
+
+
+                                    </div>
+
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+
+                                        <div>
+                                            @{ var breads = 0;
+                                                foreach (var item in Model.products)
+                                                {
+                                                    if (item.Category.Name.ToLower() == "breads")
+                                                    {
+                                                        breads++;
+                                                        <div>
+                                                            <img src="~/AdminPanel/img/product/@item.Image" style="width:100%;height:100%;"  alt="">
+                                                            <p style="text-align: center"><a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@item.Id">@item.Name: <strong>$@item.Price</strong> </a> </p>
+                                                        </div> }
+                                                    if (breads == 3) break;
+                                                } }
+                                        </div>
+
+
+
+
+
+
+                                    </div>
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+                                    </div>
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="review-products">
+                            <div class="title">
+                                Review Products
+                            </div>
+
+                            <div class="slider">
+                                <div class="owl-carousel owl-theme">
+
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+
+                                        <div>
+                                            @{ var count = 0;
+                                                foreach (var item in Model.products)
+                                                {
+                                                    if (item.Category.Name.ToLower() == "fruits")
+                                                    {
+                                                        count++;
+                                                        <div>
+                                                            <img src="~/AdminPanel/img/product/@item.Image" style="width:100%;height:100%;"  alt="">
+                                                            <p style="text-align: center"><a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@item.Id">@item.Name: <strong>$@item.Price</strong> </a> </p>
+                                                        </div> }
+                                                    if (count == 3) break;
+                                                } }
+                                        </div>
+
+
+                                    </div>
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+
+                                        <div>
+                                            @{ var count1 = 0;
+                                                foreach (var item in Model.products)
+                                                {
+                                                    if (item.Category.Name.ToLower() == "vegetables")
+                                                    {
+                                                        count1++;
+                                                        <div>
+                                                            <img src="~/AdminPanel/img/product/@item.Image" style="width:100%;height:100%;"  alt="">
+                                                            <p style="text-align: center"><a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@item.Id">@item.Name: <strong>$@item.Price</strong> </a> </p>
+                                                        </div> }
+                                                    if (count1 == 3) break;
+                                                } }
+                                        </div>
+
+
+
+
+
+                                    </div>
+
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+
+                                        <div>
+                                            @{ var count2 = 0;
+                                                foreach (var item in Model.products)
+                                                {
+                                                    if (item.Category.Name.ToLower() == "fresh meats")
+                                                    {
+                                                        count2++;
+                                                        <div>
+                                                            <img src="~/AdminPanel/img/product/@item.Image" style="width:100%;height:100%;"  alt="">
+                                                            <p style="text-align: center"><a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@item.Id">@item.Name: <strong>$@item.Price</strong> </a> </p>
+                                                        </div> }
+                                                    if (count2 == 3) break;
+                                                } }
+                                        </div>
+
+
+
+
+
+
+                                    </div>
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+                                    </div>
+                                    <div class="item" style="display: flex; flex-direction: column; gap:20px;">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="blog">
+        <div class="blog">
+            <div class="container">
+                <div class="from-blog">
+                    <p>From The Blog</p>
+                </div>
+                <div class="row mt-5">
+                    @foreach (var blog in Model.blogs.Take(3))
+                    {
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="blog-img">
+                                <img src="~/AdminPanel/img/blog/@blog.Image" style="width: 100%;height: 100%;" alt="lemon">
+                            </div>
+
+                            <div class="date-comment">
+                                <span class="date"><i class="fas fa-calendar"></i> @blog.CreatedDate.ToString("dd MMMM")</span>
+
+                            </div>
+
+                            <div class="blog-title">
+                                <p> <a asp-action="BlogDetailsPage" asp-controller="Blog" asp-route-id="@blog.Id">@blog.Title</a> </p>
+                            </div>
+
+                            <div class="blog-content">
+                                <p>
+                                    @blog.BlogDetails.Description
+                                </p>
+                            </div>
+
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@*<script type="module" src="~/MemberPanel/assets/js/home.js"></script>*@
+
+
+@section scripts {
+    <script asp-append-version="true" src="~/MemberPanel/assets/js/home.js"></script>
+
+}
+
+<!-- End-body -->

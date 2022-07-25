@@ -1,0 +1,47 @@
+﻿@model ProductDetail
+
+<div class="row">
+    <div class="container">
+        <div class="title"
+             style="text-align: center;font-weight: bold;letter-spacing:2px;font-size:20px;color: rgba(0,0,0,0.2);">
+            View
+        </div>
+        <div class="tb">
+            <div class="container mt-2">
+                <div class="table-responsive pt-3">
+                    <div class="nm">
+                        <div>
+                            <label asp-for="Availability" style="padding-left:70px;">Availability <sup>*</sup></label><br>
+                            <div class="name">@Model.Availability</div>
+                        </div>
+
+                        <label asp-for="ProductId" style="padding-left:70px;">Product Name <sup>*</sup></label><br>
+                        <div class="name">@Model.Product.Name</div><br>
+
+                        <div class="pr">
+                            <label asp-for="Weight" style="padding-left:70px;">Weight <sup>*</sup></label><br>
+                            <div class="price">@Model.Weight</div>
+                        </div>
+
+                        <div class="cnt">
+                            <label asp-for="StarCount" style="padding-left:70px;">StarCount <sup>*</sup></label><br>
+                            <div class="price">@Model.StarCount</div>
+                        </div>
+
+                        <div class="cnt">
+                            <label asp-for="Description" style="padding-left:70px;">Description <sup>*</sup></label><br>
+                            <div class="name">@Model.Description</div>
+                        </div>
+
+
+                        <div style="display: flex; justify-content: flex-end; padding-right: 40px;margin-top:20px;">
+                            <a asp-action="ProductDetailList" asp-controller="ProductDetail" asp-area="AdminPanel" class="btn btn-light">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

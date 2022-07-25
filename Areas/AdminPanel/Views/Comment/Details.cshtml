@@ -1,0 +1,29 @@
+﻿@model Comment
+
+<div class="row">
+    <div class="container">
+        <div class="title"
+             style="text-align: center;font-weight: bold;letter-spacing:2px;font-size:20px;color: rgba(0,0,0,0.2);">
+            View
+        </div>
+        <div class="tb">
+            <div class="container mt-2">
+                <div class="table-responsive pt-3">
+                    <div class="nm">
+                        <label asp-for="ProductId" style="padding-left:70px;">SaleOff <sup>*</sup></label><br>
+                        <div class="name">@Model.Product.Name</div>
+
+                        <label asp-for="Message" style="padding-left:70px;">Message <sup>*</sup></label><br>
+                        <div class="name">@Model.Message</div>
+
+                        <div style="display: flex; justify-content: flex-end; padding-right: 40px">
+                            <a asp-action="SaleOffList" asp-controller="SaleOff" asp-area="AdminPanel" class="btn btn-light">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

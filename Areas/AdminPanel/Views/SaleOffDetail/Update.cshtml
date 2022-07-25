@@ -1,0 +1,40 @@
+﻿@model (SaleOffDetail product, List<SaleOff> categories)
+
+<div class="row">
+    <div class="container">
+        <div class="title" style="text-align: center;font-weight: bold;letter-spacing:2px;font-size:20px;color: rgba(0,0,0,0.2);">
+            Update
+        </div>
+        <div class="tb">
+            <div class="container mt-2">
+                <form method="post" asp-action="Update" asp-controller="SaleOffDetail" asp-area="AdminPanel">
+                    <div class="table-responsive pt-3">
+                        <label asp-for="product.SaleOffId" style="padding-left:70px;">SaleOff Name <sup>*</sup></label><br>
+                        <select asp-for="product.SaleOffId" asp-items="@(new SelectList(Model.categories,"Id","Name"))" style="width:90%;border: none;margin-left: 70px;min-height:40px;background-color:black;color: white;padding-left: 20px;"></select><br><br>
+
+                        <label asp-for="product.Description" style="padding-left:70px;">Name <sup>*</sup></label><br>
+                        <input asp-for="product.Description" style="width:90%;border: none;margin-left: 70px;min-height:40px;background-color:white;color: black;padding-left: 20px;"><br><br>
+
+                        <label asp-for="product.Weight" style="padding-left:70px;">Weight <sup>*</sup></label><br>
+                        <input asp-for="product.Weight" style="width:90%;border: none;margin-left: 70px;height:40px;background-color:white;color: black;padding-left: 20px;"><br><br>
+
+                        <label asp-for="product.StarCount" style="padding-left:70px;">StarCount <sup>*</sup></label><br>
+                        <input asp-for="product.StarCount" style="width:90%;border: none;margin-left: 70px;height:40px;background-color:white;color: black;padding-left: 20px;"><br><br>
+
+                        <label asp-for="product.Availability" style="padding-left:70px;">Availability <sup>*</sup></label><br>
+                        <input asp-for="product.Availability" style="font-size:40px;width:200px;height:20px;"><br><br>
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger" style="padding-left: 50px;padding-top:20px">
+
+                    </div>
+                    <div class="create" style="display:flex;justify-content:flex-end;padding-right: 35px;">
+                        <input type="hidden" asp-for="product.Id" />
+                        <button class="btn btn-success">Create</button>
+                        <a asp-action="SaleOffDetailList" asp-area="AdminPanel" asp-controller="SaleOffDetail" class="btn btn-light">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 20px;
+}
+
+.pag{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    color: black;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color:white;
+}
+
+.pag:hover{
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color:black;
+}
+

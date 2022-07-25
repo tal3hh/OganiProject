@@ -1,0 +1,28 @@
+.name,.price,.count{
+min-height: 40px;
+max-width:90%;
+background-color: white;
+margin-left:70px;
+color: black;
+overflow:auto;
+padding-top: 7px;
+padding-left: 10px;
+}
+
+.img{
+    width:140px;
+    height:140px;
+    border-radius:140px;
+    background-color:white;
+    margin-left:70px;
+}
+
+.table-responsive{
+  
+}
+
+.pr,.cnt,.image{
+   margin-top: 30px;
+}
+
+

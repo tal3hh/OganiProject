@@ -1,0 +1,117 @@
+﻿@model  Paginate<ProductVM> 
+@{ 
+    ViewData["Title"] = "Products Page";
+}
+
+@{
+    int count = ((Model.CurrentPage - 1) * 10) + 1;
+}
+
+<link rel="stylesheet" href="~/MemberPanel/assets/sass/products.css">
+<link rel="stylesheet" href="~/MemberPanel/assets/css/products.css">
+
+<link rel="stylesheet" href="~/MemberPanel/assets/sass/home.css">
+<link rel="stylesheet" href="~/MemberPanel/assets/css/home.css">
+
+<main>
+    <section id="background-potatoes">
+        <div class="background-potatoes">
+            <div class="img">
+                <img src="~/MemberPanel/assets/img/potatoes-background.jpeg" style="width: 100%;height: 100%;" alt="">
+
+            </div>
+            <div class="name">
+                <p>Products</p>
+                <span> <a asp-controller="home" asp-area="" asp-action="homePage"> <strong>Home</strong> </a> -->Shop </span>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section id="favories">
+        <div class="favories">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-lg-12 col-sm-12">
+
+                        <div class="sale-off">
+                            <p>All Products</p>
+                        </div>
+
+                        <div class="sort-by-product-count">
+                            @await Component.InvokeAsync("SortByOrder", new { @action = "ProductPage" })
+
+                            <div class="product-count">
+                                <span style="color: rgba(0,0,0,1)">@ViewBag.AllProducts</span> <span>Products found</span>
+                            </div>
+                        </div>
+
+                        <div class="products">
+                            <div class="row">
+
+
+                                @foreach (var product in Model.Datas)
+                                {
+                                    <div class="col-lg-3 col-sm-12" data-id="@product.Id">
+                                        <div class="picture">
+                                            <img src="~/AdminPanel/img/product/@product.Image" style="width:100%;height:100%;" alt="potatoes">
+                                            <div class="icons">
+                                                <div class="heart-icon">
+                                                    <a href="" id="addheart"><i class="fas fa-heart"></i></a>
+                                                </div>
+                                                <div class="basket-icon">
+                                                    <a href="" id="addproduct"> <i class="fas fa-shopping-cart"></i></a>
+                                                </div>
+                                                <div class="detail-icon">
+                                                    <a asp-controller="Product" asp-action="ProductDetailsPage"  asp-route-id="@product.Id"> <i class="fas fa-info"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="name">
+                                                <a href="#">@product.Name</a>
+                                            </div>
+                                            <div class="price">
+                                                $@product.Price
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div class="row my-3 justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination ">
+                                    <li class="page-item @(Model.HasPrevious ? "": "disabled")">
+                                        <a class="page-link"  asp-action="ProductPage" asp-area="" asp-route-page="@(Model.CurrentPage-1)">Previous</a>
+                                    </li>
+                                    @for (int i = 1; i <= Model.TotalPage; i++)
+                                    {
+                                        <li class="page-item @(i == Model.CurrentPage ? "disabled" : "")">
+                                            <a class="page-link" asp-action="ProductPage" asp-area="" asp-route-page="@i">@i</a>
+                                        </li>
+                                    }
+                                    <li class="page-item @(Model.HasNext ? "": "disabled")">
+                                        <a class="page-link" asp-action="ProductPage" asp-area="" asp-route-page="@(Model.CurrentPage+1)">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+@section Scripts {
+    <script asp-append-version="true" src="~/MemberPanel/assets/js/shop.js"></script>
+
+}

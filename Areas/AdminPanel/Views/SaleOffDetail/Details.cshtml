@@ -1,0 +1,42 @@
+﻿@model SaleOffDetail
+
+<div class="row">
+    <div class="container">
+        <div class="title"
+             style="text-align: center;font-weight: bold;letter-spacing:2px;font-size:20px;color: rgba(0,0,0,0.2);">
+            View
+        </div>
+        <div class="tb">
+            <div class="container mt-2">
+                <div class="table-responsive pt-3">
+                    <div class="nm">
+                        <label asp-for="SaleOffId" style="padding-left:70px;">SaleOff Name <sup>*</sup></label><br>
+                        <div class="name">@Model.SaleOff.Name</div>
+
+                        <label asp-for="Description" style="padding-left:70px;">Description <sup>*</sup></label><br>
+                        <div class="name">@Model.Description</div>
+
+                        <label asp-for="Availability" style="padding-left:70px;">Availability <sup>*</sup></label><br>
+                        <div class="name">@Model.Availability</div>
+
+                        <div class="cnt">
+                            <label asp-for="Weight" style="padding-left:70px;">Weight <sup>*</sup></label><br>
+                            <div class="price">@Model.Weight</div>
+                        </div>
+
+                        <div class="cnt">
+                            <label asp-for="StarCount" style="padding-left:70px;">StarCount <sup>*</sup></label><br>
+                            <div class="price">@Model.StarCount</div>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; padding-right: 40px">
+                            <a asp-action="SaleOffDetailList" asp-controller="SaleOffDetail" asp-area="AdminPanel" class="btn btn-light">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

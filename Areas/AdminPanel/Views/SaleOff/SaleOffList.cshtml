@@ -1,0 +1,55 @@
+﻿@model List<SaleOff>
+@{
+    var count = 1;
+}
+
+<div class="row">
+    <div class="container">
+        <h3 style="text-align: center">SaleOff Table</h3>
+        <div class="create-btn" style="display:flex;justify-content:flex-end;padding-top:20px;padding-right: 20px;">
+            <a asp-action="Create" asp-area="AdminPanel" asp-controller="SaleOff" class="btn btn-success">Create</a>
+        </div>
+        <div class="tb">
+            <div class="container mt-5">
+                <div class="table-responsive">
+                    <table class="table table-striped table-dark text-white table-hover">
+
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th colspan="2">Name</th>
+                                <th>Image</th>
+                                <th>OldPrice</th>
+                                <th>NewPrice</th>
+                                <th style="text-align: center;padding-left:100px;">Process</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var saleoff in Model)
+                            {
+                                <tr>
+                                    <td class="text-center" style="padding-top:18px">@count</td>
+                                    <td colspan="2" style="padding-top:20px">
+                                        <h6>@saleoff.Name</h6>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center"><img class="rounded-circle" src="~/AdminPanel/img/saleoff/@saleoff.Image" width="40"></div>
+                                    </td>
+                                    <td style="padding-top:20px;padding-left: 16px">@saleoff.OldPrice $</td>
+                                    <td class="font-weight-bold" style="padding-left: 30px;padding-top: 20px;">@saleoff.NewPrice $</td>
+
+                                    <td style="display: flex;gap:25px;justify-content:flex-end;">
+                                        <a asp-action="Details" asp-controller="SaleOff" asp-area="AdminPanel" asp-route-id="@saleoff.Id" class="btn btn-primary" style="color:white">Detail</a>
+                                        <a asp-action="Update" asp-controller="SaleOff" asp-area="AdminPanel" asp-route-id="@saleoff.Id" class="btn btn-info">Update</a>
+                                        <a asp-action="Delete" asp-controller="SaleOff" asp-area="AdminPanel" asp-route-id="@saleoff.Id" class="btn btn-danger" style="color:white">Delete</a>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

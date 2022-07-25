@@ -1,0 +1,95 @@
+﻿@model Paginate<Blog>
+@{
+    ViewData["Title"] = "Blog Page";
+}
+
+
+<link rel="stylesheet" href="~/MemberPanel/assets/sass/blog.css">
+<link rel="stylesheet" href="~/MemberPanel/assets/css/blog.css">
+
+<main>
+
+    <section id="background-potatoes">
+        <div class="background-potatoes">
+            <div class="img">
+                <img src="~/MemberPanel/assets/img/potatoes-background.jpeg" style="width: 100%;height: 100%;" alt="">
+
+            </div>
+            <div class="name">
+                <p>Blog </p>
+                <span> <a asp-controller="home" asp-action="homePage"> <strong>Home</strong> </a> -->Blog </span>
+            </div>
+
+
+
+
+        </div>
+    </section>
+
+    <section id="blog-filter"></section>
+    <div class="blog-filter">
+        <div class="container">
+            <div class="row">
+
+                @await Component.InvokeAsync("BlogSideBar")
+
+                <div class="col-lg-8 col-sm-12">
+                    <div class="row">
+                        @foreach (var blog in Model.Datas)
+                        {
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="blog-img">
+                                    <img src="~/AdminPanel/img/blog/@blog.Image" style="width: 100%;height: 100%;" alt="lemon">
+                                </div>
+
+                                <div class="date-comment">
+                                    <span class="date"><i class="fas fa-calendar"></i> @blog.CreatedDate.ToString("dd MMMM yyyy")</span>
+                                </div>
+
+                                <div class="blog-title">
+                                    <p> <a asp-action="BlogDetailsPage" asp-controller="Blog" asp-route-id="@blog.Id">@blog.Title</a> </p>
+                                </div>
+
+                                <div class="blog-content">
+                                    <p>
+                                        @blog.BlogDetails.Description
+                                    </p>
+                                </div>
+
+                                <div class="read-more">
+                                    <a asp-action="BlogDetailsPage" asp-controller="Blog" asp-route-id="@blog.Id">READ MORE -></a>
+                                </div>
+                            </div>}
+
+
+                        <div class="row my-3 justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination ">
+                                    <li class="page-item @(Model.HasPrevious ? "": "disabled")">
+                                        <a class="page-link" asp-action="BlogPage" asp-area="" asp-route-page="@(Model.CurrentPage-1)">Previous</a>
+                                    </li>
+                                    @for (int i = 1; i <= Model.TotalPage; i++)
+                                    {
+                                        <li class="page-item @(i == Model.CurrentPage ? "disabled" : "")">
+                                            <a class="page-link" asp-action="BlogPage" asp-area="" asp-route-page="@i">@i</a>
+                                        </li>
+                                    }
+                                    <li class="page-item @(Model.HasNext ? "": "disabled")">
+                                        <a class="page-link" asp-action="BlogPage" asp-area="" asp-route-page="@(Model.CurrentPage+1)">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script asp-append-version="true" src="~/MemberPanel/assets/js/blog.js"></script>
+
+}

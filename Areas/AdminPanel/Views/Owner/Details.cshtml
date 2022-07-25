@@ -1,0 +1,36 @@
+﻿@model Owner
+
+<div class="row">
+    <div class="container">
+        <div class="title"
+             style="text-align: center;font-weight: bold;letter-spacing:2px;font-size:20px;color: rgba(0,0,0,0.2);">
+            View
+        </div>
+        <div class="tb">
+            <div class="container mt-2">
+                <div class="table-responsive pt-3">
+                    <div class="nm">
+                        <label asp-for="Fullname" style="padding-left:70px;">Fullname <sup>*</sup></label><br>
+                        <div class="name">@Model.Fullname</div>
+
+                        <label asp-for="Profession" style="padding-left:70px;">Profession <sup>*</sup></label><br>
+                        <div class="name">@Model.Profession</div>
+
+                        <div class="image">
+                            <label asp-for="Image" style="padding-left:70px;">Image <sup>*</sup></label><br>
+                            <div class="img" style="width:50px;height:50px;border-radius:50px;">
+                                <img src="~/AdminPanel/img/Owner/@Model.Image" style="width:100%;height:100%;border-radius: 100%;" alt="">
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; padding-right: 40px">
+                            <a asp-action="OwnerList" asp-controller="Owner" asp-area="AdminPanel" class="btn btn-light">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

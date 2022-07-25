@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300&family=Dosis:wght@600&display=swap"
+          rel="stylesheet">
+
+    @*<link rel="stylesheet" href="~/MemberPanel/assets/sass/home.css">
+    <link rel="stylesheet" href="~/MemberPanel/assets/css/home.css">*@
+
+    @*<link rel="stylesheet" href="~/MemberPanel/assets/css/blog.css">
+        <link rel="stylesheet" href="~/MemberPanel/assets/sass/blog.css">*@
+
+
+    @*<link rel="stylesheet" href="~/MemberPanel/assets/sass/contact.css">
+        <link rel="stylesheet" href="~/MemberPanel/assets/css/contact.css">*@
+
+    @*<link rel="stylesheet" href="~/MemberPanel/assets/sass/shopdetail.css">
+        <link rel="stylesheet" href="~/MemberPanel/assets/css/shopdetail.css">
+
+        <link rel="stylesheet" href="~/MemberPanel/assets/sass/shopcard.css">
+        <link rel="stylesheet" href="~/MemberPanel/assets/css/shopcard.css">
+
+        <link rel="stylesheet" href="~/MemberPanel/assets/sass/blogdetail.css">
+        <link rel="stylesheet" href="~/MemberPanel/assets/css/blogdetail.css">*@
+
+
+
+    @*<link rel="stylesheet" href="~/MemberPanel/assets/css/shop.css">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    @RenderSection("style", false)
+
+    <title>@ViewData["Title"]</title>
+</head>
+
+
+<body>
+
+
+    <!-- start header -->
+    <header>
+        <div style="height:51px;" class="header-first-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="mail-order">
+                            <ul>
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    suleymanovtaleh887@gmail.com
+                                </li>
+                                <li>
+                                    Free Shipping for all Order of $99
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="right-first-header">
+                            <div class="exchange-login-social">
+                                <ul style="display:flex;gap:18px;">
+
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="login">
+
+                                            <div class="login-icon">
+                                                <i class="fas fa-user"></i>
+                                                <span><a asp-action="SignUp" asp-controller="Account">Register</a></span>
+                                            </div>
+
+
+                                        </li>
+
+                                        <li class="login">
+                                            <div class="login-icon">
+                                                <i class="fas fa-user"></i>
+                                                <span><a asp-action="Login" asp-controller="Account">Login</a></span>
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <span style="padding-top: 3px;">@User.Identity.Name</span>
+
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a asp-action="CategoryList" asp-controller="Category" asp-area="AdminPanel"><i style="font-size:21px;color:black;" class="bi bi-person-square"></i></a>
+                                        }
+
+                                        <a asp-action="Logout" asp-controller="Account"><i style="font-size:22px;color:black;" class="bi bi-box-arrow-right"></i></a>
+
+
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-second-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-12">
+                        <div class="ogani">
+                            <a asp-action="HomePage" asp-controller="Home">
+                                <img src="~/MemberPanel/assets/img/logo.png" alt="ogani">
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <ul>
+                            <li>
+                                <a asp-action="HomePage" asp-controller="Home" id="drop">HOME</a>
+                            </li>
+                            <li>
+                                <a asp-action="ProductPage" asp-controller="Product" id="drop">PRODUCT</a>
+                            </li>
+                            <li>
+                                <a asp-action="ShopPage" asp-controller="Shop" id="drop">SHOP</a>
+                            </li>
+                            <li>
+                                <a asp-action="BlogPage" asp-controller="Blog" id="drop">BLOG</a>
+                            </li>
+                            <li>
+                                <a asp-action="ContactPage" asp-controller="Contact" id="drop">CONTACT</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <div class="basket-heart-price">
+
+
+                            <span class="heart">
+                                <span class="heart-count">
+                                    0
+                                </span>
+                                <a asp-controller="common" asp-action="favoripage">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </span>
+
+
+                            <span class="basket">
+                                <span class="basket-count">
+                                    0
+                                </span>
+                                <a asp-controller="common" asp-action="basketpage">
+                                    <i class="fas fa-shopping-basket"></i>
+                                </a>
+                            </span>
+
+                            <span class="price">
+
+                                <span>item:</span><strong>$00.00</strong>
+
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-third-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-12">
+                        <div class="dropdown">
+                            <button class="dropbtns">
+                                <i class="fas fa-bars"></i>
+                                <span>All Categories</span>
+                                <i class="fas fa-angle-down"></i>
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                @await Component.InvokeAsync("CategoryList")
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="search-input-category-btn d-flex">
+                            <div class="dropdown-cate">
+                                <button id="all-categ">All Categories <i class="fas fa-angle-down"></i></button>
+                                <div class="dropdown-content-cate">
+                                    @await Component.InvokeAsync("CategoryList")
+
+                                </div>
+                            </div>
+
+                            @await Component.InvokeAsync("ProductSearch")
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <div class="phone-icon">
+                            <div class="icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+
+                            <div class="phone">
+                                <div class="number">
+                                    +994 55 856 23 93
+                                </div>
+                                <div class="support">
+                                    support 24/7 time
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!-- End-header -->
+
+
+    <!-- Start CONTAINER -->
+
+    @RenderBody()
+
+    <!-- Start CONTAINER -->
+
+
+
+    <!-- start-footer -->
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="adress-link-subs">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-12">
+                            <img src="~/MemberPanel/assets/img/logo.png" alt="ogani">
+                            <div class="adress-phone-mail">
+                                <p>
+                                    Address: Semed Vurgun Street 110
+                                </p>
+                                <p>
+                                    Phone: +994 55 856 23 93
+                                </p>
+                                <p>
+                                    Email: suleymanovtaleh887@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <p class="useful-link">Useful Links</p>
+                            <div class="links">
+
+                                <div class="navbar">
+                                    <a asp-action="HomePage" asp-controller="Home">Home</a>
+                                    <a asp-action="ShopPage" asp-controller="Shop">Shop</a>
+                                    <a asp-action="BlogPage" asp-controller="Blog">Blog</a>
+                                    <a asp-action="ContactPage" asp-controller="Contact">Contact</a>
+
+                                </div>
+                                <div class="ourselves-link">
+                                    <a href="https://en.wikipedia.org/wiki/Planet_Organic">Who We Are</a>
+                                    <a href="">Our Services</a>
+                                    <a href="">Projects</a>
+                                    <a href="">Innovation</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <p class="join">Join Our Newsletter Now</p>
+                            <div class="get-email">
+                                Get E-mail updates about our latest shop and special offers.
+                            </div>
+                            <div class="sociall">
+                                <div class="face"><i class="fab fa-facebook-f"></i></div>
+                                <div class="insta"><i class="fab fa-instagram"></i></div>
+                                <div class="twitt"><i class="fab fa-twitter"></i></div>
+                                <div class="pinter"><i class="fab fa-pinterest"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </footer>
+    <!-- end-footer -->
+
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+            crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Jquery start -->
+
+    <script src="https://kit.fontawesome.com/ad811518ca.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+            integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="https://kit.fontawesome.com/ad811518ca.js" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    @RenderSection("Scripts", required: false)
+
+
+
+
+
+    @*<script type="module" src="~/MemberPanel/assets/js/products.js"></script>*@
+
+    @*<script src="~/MemberPanel/assets/js/home.js"></script>*@
+    <script src="~/MemberPanel/assets/js/item.js"></script>
+
+
+
+</body>
+
+</html>

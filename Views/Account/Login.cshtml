@@ -1,0 +1,58 @@
+﻿@using OganiProject.Models
+@model UserLoginModel
+@{
+    Layout = null;
+}
+
+
+
+<link rel="stylesheet" asp-append-version="true" href="~/MemberPanel/assets/css/login.css">
+
+<div class="main-w3layouts wrapper">
+    <div style="padding-left:20px;display:flex;gap:4px;">
+        <svg xmlns="http://www.w3.org/2000/svg" style="color:white" width="26" height="26" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+        </svg>
+
+        <div style="padding-top:6px;">
+            <a style="color:white" asp-controller="Home" asp-action="HomePage" asp-area=""> Home</a>
+        </div>
+      
+    </div>
+    <h1 style="height:40px;color:rgba(255,255,255,0.5)">Login</h1>
+    <div class="main-agileinfo">
+        <div class="agileits-top">
+            <form asp-action="Login" asp-controller="Account" method="post">
+                <div asp-validation-summary="All" style="color:red">
+
+                </div>
+                <input class="text" asp-for="Username" placeholder="Username" required="">
+                <input class="text" asp-for="Password" type="password" placeholder="Password" required="">
+
+                <button style="font-size: .9em; color: #fff; background: #76b852; outline: none; border: 1px solid #76b852; cursor: pointer; padding: 0.9em; -webkit-appearance: none; width: 95%; margin: 1em 0; letter-spacing: 4px;margin-top:0px;" type="submit">LOGIN</button>
+               
+
+                <a style=" color: rgba(0,0,0,0.5);" asp-controller="Account" asp-action="GoogleLogin" class="auth-link text-black">Google ile Giris?</a>
+                <a style=" color: rgba(0,0,0,0.5);" asp-controller="Account" asp-action="ForgotPassword" class="auth-link text-black">Forgot password?</a>
+            </form>
+            <p style=" padding-top: 16px">Don't you have an Account? <a asp-action="SignUp" asp-controller="Account"> Register Now!</a></p>
+        </div>
+    </div>
+    <!-- copyright -->
+    <!-- //copyright -->
+    <ul class="colorlib-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+
+

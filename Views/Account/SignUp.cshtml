@@ -1,0 +1,47 @@
+﻿@using OganiProject.Models
+@model UserCreatedModel
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" asp-append-version="true" href="~/MemberPanel/assets/css/register.css">
+
+
+
+
+<div class="main-w3layouts wrapper">
+    <h1 style="height:40px;color:rgba(255,255,255,0.5)">Register</h1>
+    <div class="main-agileinfo">
+        <div class="agileits-top">
+            <form asp-action="SignUp" asp-controller="Account" method="post">
+                <input class="text" asp-for="Username" placeholder="Username" required="">
+                <input class="text email" asp-for="Email" placeholder="Email" required="">
+                <input class="text" type="password" asp-for="Password" placeholder="Password" required="">
+                <input class="text w3lpass" type="password" asp-for="ConfrimPassword" placeholder="Confirm Password" required="">
+                <div asp-validation-summary="All" style="color:red;">
+
+                </div>
+              
+                <button style="font-size: .9em; color: #fff; background: #76b852; outline: none; border: 1px solid #76b852; cursor: pointer; padding: 0.9em; -webkit-appearance: none; width: 95%; margin: 2em 0; letter-spacing: 4px;margin-top:0px;" type="submit">SIGN UP</button>
+            </form>
+            <p>Do you have an Account? <a asp-controller="account" asp-action="login"> Login Now!</a></p>
+        </div>
+    </div>
+    <!-- copyright -->
+    <!-- //copyright -->
+    <ul class="colorlib-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+

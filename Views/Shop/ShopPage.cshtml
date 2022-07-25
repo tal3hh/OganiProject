@@ -1,0 +1,204 @@
+﻿@model (List<SaleOff> saleoff, Paginate<ProductVM> paginate)
+
+
+<link rel="stylesheet" asp-append-version="true" href="~/MemberPanel/assets/css/shop.css">
+
+<link rel="stylesheet" href="~/MemberPanel/assets/sass/home.css">
+<link rel="stylesheet" href="~/MemberPanel/assets/css/home.css">
+
+
+<main>
+
+    <section id="background-potatoes">
+        <div class="background-potatoes">
+            <div class="img">
+                <img src="~/MemberPanel/assets/img/potatoes-background.jpeg" style="width: 100%;height: 100%;" alt="">
+
+            </div>
+            <div class="name">
+                <p>Organi Shop</p>
+                <span> <a asp-controller="home" asp-action="homePage"> <strong>Home</strong> </a> -->Shop </span>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section>
+        <div class="filter-product">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-12">
+                        <div class="filter">
+                            <div class="cate">
+                                <p>
+                                    Categories
+                                </p>
+                                @await Component.InvokeAsync("CategoryList")
+
+                            </div>
+
+                            <!--<div class="price">
+                                    <p class="name">Price</p>-->
+
+                                    @*<div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="slider-range"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row slider-labels mt-4">
+                                        <div class="col-xs-6 caption" style="color:#7fad39;line-height: 40px;">
+                                            <strong style="color: black;">Min:</strong> <span id="slider-range-value1"></span>
+                                        </div>
+                                        <div class="col-xs-6 text-right caption" style="color:#7fad39">
+                                            <strong style="color: black;">Max:</strong> <span id="slider-range-value2"></span>
+                                        </div>
+                                    </div>*@
+                                    <!--<div class="row">
+                                        <div class="col-sm-12">
+                                            <form method="post" asp-action="GetProductsWithPrice" asp-controller="Shop">
+                                                <input type="number" name="minvalue" >
+                                                <input type="number" name="maxvalue" >
+                                                <button type="submit">Axtar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>-->
+
+       
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-9 col-sm-12">
+
+                        <div class="sale-off">
+                            <p>Sale Off</p>
+                        </div>
+
+                        <div class="sale-products">
+                            <div class="owl-carousel owl-theme">
+
+                                @foreach (var item in Model.saleoff.Take(6))
+                                {
+                                    <div class="item" style="height:370px;" data-id="@item.Id">
+                                        <div class="picture">
+                                            <img src="~/AdminPanel/img/saleoff/@item.Image" style="width: 100%;height: 100%;" alt="meat">
+                                            <div class="icons">
+                                                <div class="heart-icon">
+                                                    <a href="" id="addheart"><i class="fas fa-heart"></i></a>
+                                                </div>
+                                                <div class="basket-icon">
+                                                    <a href="" id="addproduct"> <i class="fas fa-shopping-cart"></i></a>
+
+                                                </div>
+                                                <div class="detail-icon">
+                                                    <a href=""> <i class="fas fa-info"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="name">
+                                                <a href="#">@item.Name</a>
+                                            </div>
+                                            <div class="price">
+                                                $@item.NewPrice   <span>$@item.OldPrice</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+
+
+
+                            </div>
+                        </div>
+                        <hr style="color:rgba(0,0,0,0.4);">
+
+
+
+                        <div class="sort-by-product-count">
+                            <div class="sortby">
+                                <span>Sort By</span>
+                                <button id="default">Default <i class="fas fa-angle-down" id="icon"></i></button>
+                                <div class="sort-content">
+                                    <a href="#">Default</a>
+                                    <a asp-action="ShopPage" asp-controller="Shop" asp-route-sortOrder="@ViewBag.Name" asp-route-page="@Model.paginate.CurrentPage">Name</a>
+                                    <a asp-action="ShopPage" asp-controller="Shop" asp-route-sortOrder="@ViewBag.Price" asp-route-page="@Model.paginate.CurrentPage">Price</a>
+
+                                </div>
+                            </div>
+
+                            <div class="product-count">
+                                <strong>@ViewBag.AllProducts</strong> <span>Products found</span>
+                            </div>
+                        </div>
+
+                        <div class="products">
+                            <div class="row">
+                                @foreach (var product in Model.paginate.Datas)
+                                {
+                                    <div class="col-lg-4 col-sm-12" data-id="@product.Id">
+                                        <div class="picture">
+                                            <img src="~/AdminPanel/img/product/@product.Image" style="width:100%;height:100%;" alt="banana">
+                                            <div class="icons">
+                                                <div class="heart-icon">
+                                                    <a href="" id="addheart"><i class="fas fa-heart"></i></a>
+                                                </div>
+                                                <div class="basket-icon">
+                                                    <a href="" id="addproduct"> <i class="fas fa-shopping-cart"></i></a>
+                                                </div>
+                                                <div class="detail-icon">
+                                                    <a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@product.Id"> <i class="fas fa-info"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="name">
+                                                <a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@product.Id">@product.Name</a>
+                                            </div>
+                                            <div class="price">
+                                                $@product.Price
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="row my-3 justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination ">
+                                    <li class="page-item @(Model.paginate.HasPrevious ? "": "disabled")">
+                                        <a class="page-link" asp-action="ShopPage" asp-area="" asp-route-page="@(Model.paginate.CurrentPage-1)">Previous</a>
+                                    </li>
+                                    @for (int i = 1; i <= Model.paginate.TotalPage; i++)
+                                    {
+                                        <li class="page-item @(i == Model.paginate.CurrentPage ? "disabled" : "")">
+                                            <a class="page-link" asp-action="ShopPage" asp-area="" asp-route-page="@i">@i</a>
+                                        </li>
+                                    }
+
+                                    <li class="page-item @(Model.paginate.HasNext ? "": "disabled")">
+                                        <a class="page-link" asp-action="ShopPage" asp-area="" asp-route-page="@(Model.paginate.CurrentPage+1)">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+@section Scripts {
+    <script asp-append-version="true" src="~/MemberPanel/assets/js/shop.js"></script>
+
+}
+
+

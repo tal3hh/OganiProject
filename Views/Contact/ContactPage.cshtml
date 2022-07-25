@@ -1,0 +1,98 @@
+﻿@model List<Contact>
+
+<link rel="stylesheet" href="~/MemberPanel/assets/sass/contact.css">
+<link rel="stylesheet" href="~/MemberPanel/assets/css/contact.css">
+
+<main>
+    <section id="background-potatoes">
+        <div class="background-potatoes">
+            <div class="img">
+                <img src="~/MemberPanel/assets/img/potatoes-background.jpeg" style="width: 100%;height: 100%;" alt="">
+
+            </div>
+            <div class="name">
+                <p>Contact Us</p>
+                <span> <a asp-controller="home" asp-action="homePage"> <strong>Home</strong> </a> -->Contact Us </span>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section id="phone-adress-opentime-email">
+        <div class="phone-adress-opentime-email">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in Model.Take(1))
+                    {
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="phone">
+                                <div class="icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="title">
+                                    Phone
+                                </div>
+                                <div class="number">
+                                    @item.Phone
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="phone">
+                                <div class="icon" style="padding-left: 65px;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="title" style="padding-left: 45px;">
+                                    Adress
+                                </div>
+                                <div class="number">
+                                    @item.Adress
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="phone">
+                                <div class="icon" style="padding-left: 65px;">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="title">
+                                    Open Time
+                                </div>
+                                <div class="number" style="padding-left: 15px;">
+                                    @item.OpenTime
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="phone">
+                                <div class="icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="title" style="padding-left: 40px;">
+                                    Email
+                                </div>
+                                <div class="number">
+                                    @item.Email
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="map">
+        <div class="map mt-5">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21553.211026731053!2d49.82010094652487!3d40.39291182138933!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d79e7ac1515%3A0xf501bb0201a7fc7b!2zMTEwIFPJmW3JmWQgVnVyxJ91biwgQmFrxLE!5e0!3m2!1sen!2s!4v1653037572279!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+</main>
+
+
+@section Scripts {
+    <script asp-append-version="true" src="~/MemberPanel/assets/js/contact.js"></script>
+
+}

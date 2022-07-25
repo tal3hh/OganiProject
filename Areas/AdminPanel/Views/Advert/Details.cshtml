@@ -1,0 +1,30 @@
+﻿@model Advert
+
+<div class="row">
+    <div class="container">
+        <div class="title"
+             style="text-align: center;font-weight: bold;letter-spacing:2px;font-size:20px;color: rgba(0,0,0,0.2);">
+            View
+        </div>
+        <div class="tb">
+            <div class="container mt-2">
+                <div class="table-responsive pt-3">
+
+                    <div class="image">
+                        <label asp-for="Image" style="padding-left:70px;">Image <sup>*</sup></label><br>
+                        <div class="img" style="width:50px;height:50px;border-radius:50px;">
+                            <img src="~/AdminPanel/img/advert/@Model.Image" style="width:100%;height:100%;border-radius: 100%;" alt="">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end; padding-right: 40px">
+                        <a asp-action="AdvertList" asp-controller="Advert" asp-area="AdminPanel" class="btn btn-light">Cancel</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>

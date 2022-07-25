@@ -1,0 +1,35 @@
+﻿@model BlogDetail
+
+<div class="row">
+    <div class="container">
+        <div class="title"
+             style="text-align: center;font-weight: bold;letter-spacing:2px;font-size:20px;color: rgba(0,0,0,0.2);">
+            View
+        </div>
+        <div class="tb">
+            <div class="container mt-2">
+                <div class="table-responsive pt-3">
+                    <div class="nm">
+                        <label asp-for="BlogId" style="padding-left:70px;">Blog Title <sup>*</sup></label><br>
+                        <div class="name">@Model.Blog.Title</div>
+
+                        <label asp-for="Description" style="padding-left:70px;">Description <sup>*</sup></label><br>
+                        <div class="name">@Model.Description</div>
+
+                        <label asp-for="CategoryName" style="padding-left:70px;">CategoryName <sup>*</sup></label><br>
+                        <div class="name">@Model.CategoryName</div>
+
+                        <label asp-for="Tags" style="padding-left:70px;">Tags <sup>*</sup></label><br>
+                        <div class="name">@Model.Tags</div>
+
+                        <div style="display: flex; justify-content: flex-end; padding-right: 40px">
+                            <a asp-action="BlogDetailList" asp-controller="BlogDetail" asp-area="AdminPanel" class="btn btn-light">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

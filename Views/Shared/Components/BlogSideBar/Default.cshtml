@@ -1,0 +1,88 @@
+﻿@model (List<Category> categories, List<Blog> blogs, List<Product> products)
+
+
+
+<div class="col-lg-4 col-sm-12">
+    <div class="filter-search">
+        @*<div class="search">
+                <input type="text" placeholder="Search...">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+            </div>*@
+        <form id="search" asp-action="BlogSearch" asp-controller="Blog">
+            <input  style="position: relative; width: 301px; height: 40px; border-radius: 238px; border: 1px solid rgba(0,0,0,0.3); padding-left: 14px;outline:none;" type="search" placeholder="Search..." name="search" />
+            <button style="position: absolute; right: 144px; top: 7px; border: none; background-color: white;" type="submit">
+                <span style=" color: rgba(0,0,0,0.4);" class="search-icon"><i class="fas fa-search"></i></span>
+            </button>
+        </form>
+    </div>
+
+    <div class="categories-title">
+        Categories
+    </div>
+
+    <div class="categories-name">
+       
+        <div>
+            <a asp-action="ProductPage" asp-controller="Product">All</a>
+        </div>
+        @foreach (var category in Model.categories)
+        {
+            <div>
+                <a asp-action="ProductCategoryPage" asp-controller="Product" asp-route-id="@category.Id">@category.Name (@category.Products.Count)</a>
+            </div>
+        }
+
+    </div>
+
+    <div class="recent-news">
+        Recent News
+    </div>
+
+    @foreach (var blog in Model.blogs)
+    {
+        <div class="image-content-date">
+            <div class="img" style="width: 70px;height: 70px;">
+                <img src="~/AdminPanel/img/blog/@blog.Image" style="width: 100%;height: 100%;" alt="strawberry">
+            </div>
+
+            <div class="content-date">
+                <div class="content">
+                    <a asp-action="BlogDetailsPage" asp-controller="Blog" asp-route-id="@blog.Id"> @blog.Title</a>
+                </div>
+                <div class="date">
+                    @blog.CreatedDate.ToString("dd MMMM yyyy")
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <div class="recent-news">
+        Search  By
+    </div>
+
+    <div class="product-name">
+        <div class="up">
+            @foreach (var product in Model.products)
+            {
+                if (product.Category.Name.ToLower() == "fruits")
+                {
+                    <span><a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@product.Id">@product.Name</a> </span>
+                }
+            }
+
+        </div>
+
+        <div class="down">
+
+            @foreach (var product in Model.products)
+            {
+                if (product.Category.Name.ToLower() == "vegetables")
+                {
+                    <span><a asp-action="ProductDetailsPage" asp-controller="Product" asp-route-id="@product.Id">@product.Name</a> </span>}
+            }
+        </div>
+
+    </div>
+
+</div>
