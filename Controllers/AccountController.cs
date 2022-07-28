@@ -102,7 +102,7 @@ namespace OganiProject.Controllers
                     using var smtp = new SmtpClient();
 
                     smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    smtp.Authenticate("projectogani@gmail.com", "Ogani564o");
+                    smtp.Authenticate("projectogani@gmail.com", "cjywfdxcacwbtixw");
                     smtp.Send(message);
                     smtp.Disconnect(true);
 
